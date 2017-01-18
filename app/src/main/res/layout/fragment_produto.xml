@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scrollView_produto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardview_imagem_produto_fragmentproduto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|top"
+                android:layout_margin="6dp"
+                card_view:cardBackgroundColor="@color/cardview_light_background"
+                card_view:cardCornerRadius="2dp"
+                card_view:cardElevation="6dp">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    card_view:srcCompat="@drawable/ic_menu_camera" />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardview_inputs_produto_fragmentproduto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|top"
+                android:layout_margin="6dp"
+                card_view:cardBackgroundColor="@color/cardview_light_background"
+                card_view:cardCornerRadius="2dp"
+                card_view:cardElevation="6dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/title_nome_produto_fragmentproduto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/nome_produto" />
+
+                    <EditText
+                        android:id="@+id/nome_produto_fragmentproduto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text="@string/nome_produto" />
+
+                    <TextView
+                        android:id="@+id/title_marca_fragmentproduto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/marca" />
+
+                    <EditText
+                        android:id="@+id/marca_produto_fragmentproduto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text="@string/marca" />
+
+                    <TextView
+                        android:id="@+id/title_local_compra_fragmentproduto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/local_compra" />
+
+                    <EditText
+                        android:id="@+id/local_compra_fragmentproduto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text="@string/local_compra" />
+
+                    <TextView
+                        android:id="@+id/title_valor_produto_fragmentproduto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/valor_rs" />
+
+                    <EditText
+                        android:id="@+id/local_valor_produto_fragmentproduto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        android:text="@string/valor_rs" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

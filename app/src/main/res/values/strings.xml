@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">MML</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+    <string name="novo">Novo</string>
+    <string name="produtos">Produtos</string>
+    <string name="produto">Produto</string>
+    <string name="digite_aqui">Digite aqui ;)</string>
+    <string name="local_compra">Local compra: </string>
+    <string name="valor_rs">Valor R$: </string>
+    <string name="nome_produto">Nome produto: </string>
+    <string name="salvar">Salvar</string>
+    <string name="market">Market ;)</string>
+    <string name="photo">Foto produto</string>
+    <string name="marca">Marca: </string>
+    <string name="excluir">Excluir</string>
+    <string name="cancelar">Cancelar</string>
+</resources>
