@@ -59,7 +59,7 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:inputType="textPersonName"
-                        android:text="@string/nome_produto" />
+                        android:hint="@string/nome_produto" />
 
                     <TextView
                         android:id="@+id/title_marca_fragmentproduto"
@@ -73,7 +73,7 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:inputType="textPersonName"
-                        android:text="@string/marca" />
+                        android:hint="@string/marca" />
 
                     <TextView
                         android:id="@+id/title_local_compra_fragmentproduto"
@@ -87,7 +87,7 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:inputType="textPersonName"
-                        android:text="@string/local_compra" />
+                        android:hint="@string/local_compra" />
 
                     <TextView
                         android:id="@+id/title_valor_produto_fragmentproduto"
@@ -96,12 +96,12 @@
                         android:text="@string/valor_rs" />
 
                     <EditText
-                        android:id="@+id/local_valor_produto_fragmentproduto"
+                        android:id="@+id/valor_produto_fragmentproduto"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:inputType="numberDecimal"
-                        android:text="@string/valor_rs" />
+                        android:hint="@string/valor_rs" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
         </LinearLayout>

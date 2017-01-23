@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import codepampa.com.br.mml.R;
+import codepampa.com.br.mml.fragment.ProdutoFragment;
 
 public class ProdutoActivity extends BaseActivity{
 
@@ -20,6 +21,7 @@ public class ProdutoActivity extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_produto);
+        replaceFragment(R.id.content_main, new ProdutoFragment());
     }
 
 }

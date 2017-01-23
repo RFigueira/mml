@@ -34,7 +34,6 @@ public class ProdutosActivity extends BaseActivity
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ProdutosActivity.this, ProdutoActivity.class);
-                intent.putExtra("qualFragmentAbrir", "ProdutoFragment");
                 startActivity(intent);
             }
         });

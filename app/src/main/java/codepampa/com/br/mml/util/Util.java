@@ -8,7 +8,7 @@ public class Util {
         return string == null || string.isEmpty();
     }
 
-    public static boolean isObjectsNull(Objects objects) {
+    public static boolean isObjectsNull(Object objects) {
         return objects == null;
     }
 
