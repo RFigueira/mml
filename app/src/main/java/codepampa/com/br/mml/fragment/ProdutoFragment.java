@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.math.BigDecimal;
 
@@ -55,8 +56,10 @@ public class ProdutoFragment extends BaseFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menuitem_salvar:{
-                popularProduto();
-                new ProdutosTask().execute(Operacao.SAVE); //executa a operação CREATE em uma thread AsyncTask
+                if(validarInputs()) {
+                    popularProduto();
+                    new ProdutosTask().execute(Operacao.SAVE); //executa a operação CREATE em uma thread AsyncTask
+                }
                 break;
 
             }
@@ -69,6 +72,32 @@ public class ProdutoFragment extends BaseFragment {
                 break;
         }
         return false;
+    }
+
+        private boolean validarInputs(){
+            String msg = "";
+            if (editTextValorProduto.getText().toString().trim().isEmpty()) {
+                msg += "Campo Preço obrigatorio\n";
+                editTextValorProduto.requestFocus();
+            }
+            if (editTextMarca.getText().toString().trim().isEmpty()) {
+                msg += "Campo Marca obrigatorio\n";
+                editTextMarca.requestFocus();
+            }
+            if(editTextNomeProduto.getText().toString().trim().isEmpty()) {
+                msg += "Campo Nome obrigatorio\n";
+                editTextNomeProduto.requestFocus();
+            }
+            if (editTextLocalCompra.getText().toString().trim().isEmpty()) {
+                msg += "Campo Local Compra obrigatorio\n";
+                editTextLocalCompra.requestFocus();
+            }
+
+            if(msg.trim().length() > 0){
+                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+            return true;
     }
 
     private void popularProduto() {
@@ -156,7 +185,7 @@ public class ProdutoFragment extends BaseFragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            alertWait(R.string.wait, R.string.processando);
+            alertWait(R.string.title_wait, R.string.title_wait);
         }
 
 
@@ -165,9 +194,9 @@ public class ProdutoFragment extends BaseFragment {
             super.onPostExecute(cont);
             alertWaitDismiss();
             if(cont > 0){
-                alertOk(R.string.resultado_operacao, R.string.realizado_com_sucesso);
+                alertOk(R.string.title_resultado_operacao, R.string.title_realizado_com_sucesso);
             }else{
-                alertOk(R.string.resultado_operacao, R.string.erro_operacao);
+                alertOk(R.string.title_resultado_operacao, R.string.title_erro_operacao);
             }
         }
     }
