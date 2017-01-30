@@ -16,4 +16,11 @@
     <string name="marca">Marca: </string>
     <string name="excluir">Excluir</string>
     <string name="cancelar">Cancelar</string>
+
+    <string name="wait">Aguarde</string>
+    <string name="processando">Processando ...</string>
+    <string name="buttom_ok">OK</string>
+    <string name="resultado_operacao">Resultado da Operação</string>
+    <string name="realizado_com_sucesso">Realizada com sucesso.</string>
+    <string name="erro_operacao">Erro ao realizar a operação. Por favor, avise o desenvolvedor.</string>
 </resources>

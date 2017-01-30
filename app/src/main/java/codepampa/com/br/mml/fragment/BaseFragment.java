@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
 import codepampa.com.br.mml.R;
+import codepampa.com.br.mml.util.Util;
 
 public abstract class BaseFragment extends Fragment {
 
@@ -51,7 +52,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected void alertWaitDismiss() {
-        if (dialog != null) {
+        if (!Util.isObjectsNull(dialog)) {
             dialog.dismiss();
         }
     }

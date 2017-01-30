@@ -3,6 +3,7 @@ package codepampa.com.br.mml.fragment;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,9 +16,11 @@ import android.widget.ImageView;
 
 import java.math.BigDecimal;
 
+import codepampa.com.br.mml.Enum.Operacao;
 import codepampa.com.br.mml.R;
 import codepampa.com.br.mml.activity.ProdutoActivity;
 import codepampa.com.br.mml.model.Produto;
+import codepampa.com.br.mml.service.ProdutoService;
 import codepampa.com.br.mml.util.Util;
 
 public class ProdutoFragment extends BaseFragment {
@@ -52,15 +55,14 @@ public class ProdutoFragment extends BaseFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menuitem_salvar:{
-
                 popularProduto();
-//                new CarrosTask().execute(SAVE); //executa a operação CREATE em uma thread AsyncTask
-//                break;
+                new ProdutosTask().execute(Operacao.SAVE); //executa a operação CREATE em uma thread AsyncTask
+                break;
 
             }
             case R.id.menuitem_excluir:{
-                /*new CarrosTask().execute(DELETE); //executa a operação DELETE em uma thread AsyncTask
-                break;*/
+                new ProdutosTask().execute(Operacao.DELETE);
+                break;
             }
             case android.R.id.home:
                 getActivity().finish();
@@ -136,5 +138,39 @@ public class ProdutoFragment extends BaseFragment {
     public  void  setProduto(Produto produto) {
         this.produto = produto;
     }
+
+    private class ProdutosTask extends AsyncTask<Operacao, Void, Long> {
+
+        @Override
+        protected Long doInBackground(Operacao... operacao) {
+            if(operacao[0].isSave()){
+                return ProdutoService.getInstance(getContext()).save(produto);
+            } else if(operacao[0].isDelete()){
+                return ProdutoService.getInstance(getContext()).excluir(produto);
+
+            }
+            return null; // tenho que retornar pq la no service eu retorno um log
+            //TODO: Melhor isso
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            alertWait(R.string.wait, R.string.processando);
+        }
+
+
+        @Override
+        protected void onPostExecute(Long cont) {
+            super.onPostExecute(cont);
+            alertWaitDismiss();
+            if(cont > 0){
+                alertOk(R.string.resultado_operacao, R.string.realizado_com_sucesso);
+            }else{
+                alertOk(R.string.resultado_operacao, R.string.erro_operacao);
+            }
+        }
+    }
+
 
 }
