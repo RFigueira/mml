@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.math.BigDecimal;
 
@@ -94,7 +93,7 @@ public class ProdutoFragment extends BaseFragment {
             }
 
             if(msg.trim().length() > 0){
-                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+                toast(msg);
                 return false;
             }
             return true;
