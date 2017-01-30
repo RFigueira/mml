@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/cardview_titulo_produto"
+            android:id="@+id/cardview_adapter_titulo_produto"
             android:layout_marginLeft="3dp"/>
 
         <FrameLayout
@@ -32,9 +32,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:id="@+id/cardview_imagem"/>
+                android:id="@+id/cardview_adapter_imagem"/>
             <ProgressBar
-                android:id="@+id/cardview_prograss_bar"
+                android:id="@+id/cardview_adapter_prograss_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"/>
