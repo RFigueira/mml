@@ -14,6 +14,8 @@ import android.view.View;
 
 import codepampa.com.br.mml.R;
 import codepampa.com.br.mml.fragment.ProdutoFragment;
+import codepampa.com.br.mml.model.Produto;
+import codepampa.com.br.mml.util.Util;
 
 public class ProdutoActivity extends BaseActivity{
 
@@ -21,7 +23,14 @@ public class ProdutoActivity extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_produto);
+
+        Produto produto = (Produto) getIntent().getCharSequenceExtra("produto");
+
+        if(!Util.isObjectsNull(produto)) {
+            replaceFragment(R.id.content_main, new ProdutoFragment(produto));
+        }
         replaceFragment(R.id.content_main, new ProdutoFragment());
+
     }
 
 }

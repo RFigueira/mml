@@ -25,6 +25,13 @@ import codepampa.com.br.mml.util.Util;
 
 public class ProdutoFragment extends BaseFragment {
 
+    public ProdutoFragment(){
+    }
+
+    public ProdutoFragment(Produto produto) {
+        this.produto = produto;
+    }
+
     private Produto produto;
 
     private ImageView imageViewFoto;
@@ -144,6 +151,7 @@ public class ProdutoFragment extends BaseFragment {
 
     }
 
+
     private void novoProduto(View view) {
         ((ProdutoActivity) getActivity()).getSupportActionBar().setTitle(R.string.produto);
         imageViewFoto = (ImageView) view.findViewById(R.id.imageView2);
@@ -163,9 +171,6 @@ public class ProdutoFragment extends BaseFragment {
     }
 
 
-    public  void  setProduto(Produto produto) {
-        this.produto = produto;
-    }
 
     private class ProdutosTask extends AsyncTask<Operacao, Void, Long> {
 
