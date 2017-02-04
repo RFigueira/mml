@@ -16,6 +16,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import codepampa.com.br.mml.R;
+import codepampa.com.br.mml.fragment.ProdutoFragment;
+import codepampa.com.br.mml.fragment.ProdutosFragment;
 
 public class ProdutosActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -46,6 +48,13 @@ public class ProdutosActivity extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        replaceFragment(R.id.content_main, new ProdutosFragment());
     }
 
     @Override

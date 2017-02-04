@@ -112,8 +112,29 @@ public class ProdutoFragment extends BaseFragment {
         produto.localCompra = editTextLocalCompra.getText().toString();
         produto.preco = new BigDecimal(editTextValorProduto.getText().toString());
     }
+    private void popularTelaProduto() {
+
+        editTextNomeProduto.setText(produto.nome);
+        editTextMarca.setText(produto.marca);
+        editTextLocalCompra.setText(produto.localCompra);
+        editTextValorProduto.setText(produto.preco.toString());
+
+    }
+
+    private void mapearInputs(View view) {
+            editTextNomeProduto = (EditText) view.findViewById(R.id.nome_produto_fragmentproduto);
+            editTextMarca = (EditText) view.findViewById(R.id.marca_produto_fragmentproduto);
+            editTextLocalCompra = (EditText) view.findViewById(R.id.local_compra_fragmentproduto);
+            editTextValorProduto = (EditText) view.findViewById(R.id.valor_produto_fragmentproduto);
+            imageViewFoto = (ImageView) view.findViewById(R.id.image_view_fragmentproduto);
+            if(produto.urlImagem != null){
+                imageViewFoto.setImageURI(Uri.parse(produto.urlImagem));
+            }
+    }
 
     private void editarProduto(View view) {
+        mapearInputs(view);
+        popularTelaProduto();
     }
 
 
@@ -154,7 +175,7 @@ public class ProdutoFragment extends BaseFragment {
 
     private void novoProduto(View view) {
         ((ProdutoActivity) getActivity()).getSupportActionBar().setTitle(R.string.produto);
-        imageViewFoto = (ImageView) view.findViewById(R.id.imageView2);
+        imageViewFoto = (ImageView) view.findViewById(R.id.image_view_fragmentproduto);
         imageViewFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -180,7 +201,6 @@ public class ProdutoFragment extends BaseFragment {
                 return ProdutoService.getInstance(getContext()).save(produto);
             } else if(operacao[0].isDelete()){
                 return ProdutoService.getInstance(getContext()).excluir(produto);
-
             }
             return null; // tenho que retornar pq la no service eu retorno um log
             //TODO: Melhor isso

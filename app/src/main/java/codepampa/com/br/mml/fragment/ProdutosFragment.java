@@ -17,9 +17,11 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import codepampa.com.br.mml.R;
+import codepampa.com.br.mml.activity.ProdutoActivity;
 import codepampa.com.br.mml.activity.ProdutosActivity;
 import codepampa.com.br.mml.adapter.ProdutosAdapter;
 import codepampa.com.br.mml.model.Produto;
@@ -27,13 +29,16 @@ import codepampa.com.br.mml.service.ProdutoService;
 
 public class ProdutosFragment extends BaseFragment implements SearchView.OnQueryTextListener {
 
-    protected RecyclerView reciclerview;
+    protected RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private ProdutoService produtoService;
     private List<Produto> produtos;
 
+    public ProdutosFragment() {
+    }
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         getInstanciaService();
@@ -51,19 +56,19 @@ public class ProdutosFragment extends BaseFragment implements SearchView.OnQuery
         produtoService = ProdutoService.getInstance(getContext());
     }
 
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_produtos, container, false);
 
-        reciclerview = (RecyclerView) view.findViewById(R.id.recyclerview_fragment_produtos);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview_fragment_produtos);
 
         linearLayoutManager = new LinearLayoutManager(getActivity());
 
-        reciclerview.setLayoutManager(linearLayoutManager);
-        reciclerview.setItemAnimator(new DefaultItemAnimator());
-        reciclerview.setHasFixedSize(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setHasFixedSize(true);
 
         new ProdutosTask().execute();
 
@@ -82,12 +87,23 @@ public class ProdutosFragment extends BaseFragment implements SearchView.OnQuery
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        return false;
+        return true;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        return false;
+        List<Produto> produtosList = new ArrayList<>();
+
+        for(Produto produto : produtos){
+            if(produto.nome.contains(newText)) {
+                produtosList.add(produto);
+            }
+
+        }
+
+        recyclerView.setAdapter(new ProdutosAdapter(getContext(), produtosList, onClickProduto()));
+
+        return true;
     }
 
     protected ProdutosAdapter.ProdutoOnClickListener onClickProduto() {
@@ -99,8 +115,8 @@ public class ProdutosFragment extends BaseFragment implements SearchView.OnQuery
                 //armazena o carro que foi clicado
                 Produto produto = produtos.get(idx);
                 //chama outra Activity para detalhar ou editar o carro clicado pelo usuário
-                Intent intent = new Intent(getContext(), ProdutosActivity.class); //configura uma Intent explícita
-                intent.putExtra("produto", produto); //inseri um extra com a referência para o objeto Carro
+                Intent intent = new Intent(getContext(), ProdutoActivity.class); //configura uma Intent explícita
+                intent.putExtra("produto", produto);
                 startActivity(intent);
             }
         };
@@ -113,7 +129,6 @@ public class ProdutosFragment extends BaseFragment implements SearchView.OnQuery
 
         @Override
         protected List<Produto> doInBackground(Void... voids) {
-
             return produtoService.getAll();
         }
 
@@ -123,7 +138,7 @@ public class ProdutosFragment extends BaseFragment implements SearchView.OnQuery
             //copia a lista de carros para uso no onQueryTextChange()
             ProdutosFragment.this.produtos = produtos;
             //atualiza a view na UIThread
-            reciclerview.setAdapter(new ProdutosAdapter(getContext(), produtos, onClickProduto())); //Context, fonte de dados, tratador do evento onClick
+            recyclerView.setAdapter(new ProdutosAdapter(getContext(), produtos, onClickProduto())); //Context, fonte de dados, tratador do evento onClick
         }
     }//fim classe interna
 

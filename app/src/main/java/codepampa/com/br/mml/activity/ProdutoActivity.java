@@ -24,12 +24,13 @@ public class ProdutoActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_produto);
 
-        Produto produto = (Produto) getIntent().getCharSequenceExtra("produto");
+        Produto produto = (Produto) getIntent().getSerializableExtra("produto");
 
         if(!Util.isObjectsNull(produto)) {
             replaceFragment(R.id.content_main, new ProdutoFragment(produto));
+        } else {
+            replaceFragment(R.id.content_main, new ProdutoFragment());
         }
-        replaceFragment(R.id.content_main, new ProdutoFragment());
 
     }
 
