@@ -43,17 +43,13 @@ public class ProdutoFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setHasOptionsMenu(true);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_produto, container, false);
-
         acoes(view);
-
         return  view;
     }
 
@@ -80,7 +76,8 @@ public class ProdutoFragment extends BaseFragment {
         return false;
     }
 
-        private boolean validarInputs(){
+
+    private boolean validarInputs(){
             String msg = "";
             if (editTextValorProduto.getText().toString().trim().isEmpty()) {
                 msg += "Campo Preço obrigatorio\n";
@@ -106,19 +103,23 @@ public class ProdutoFragment extends BaseFragment {
             return true;
     }
 
+
     private void popularProduto() {
         produto.nome = editTextNomeProduto.getText().toString();
         produto.marca = editTextMarca.getText().toString();
         produto.localCompra = editTextLocalCompra.getText().toString();
         produto.preco = new BigDecimal(editTextValorProduto.getText().toString());
     }
-    private void popularTelaProduto() {
 
+
+    private void popularTelaProduto() {
         editTextNomeProduto.setText(produto.nome);
         editTextMarca.setText(produto.marca);
         editTextLocalCompra.setText(produto.localCompra);
         editTextValorProduto.setText(produto.preco.toString());
-
+        if(produto.urlImagem != null){
+            imageViewFoto.setImageURI(Uri.parse(produto.urlImagem));
+        }
     }
 
     private void mapearInputs(View view) {
@@ -127,9 +128,13 @@ public class ProdutoFragment extends BaseFragment {
             editTextLocalCompra = (EditText) view.findViewById(R.id.local_compra_fragmentproduto);
             editTextValorProduto = (EditText) view.findViewById(R.id.valor_produto_fragmentproduto);
             imageViewFoto = (ImageView) view.findViewById(R.id.image_view_fragmentproduto);
-            if(produto.urlImagem != null){
-                imageViewFoto.setImageURI(Uri.parse(produto.urlImagem));
-            }
+            imageViewFoto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(Intent.createChooser(intent, "Selecione uma imagem"), 0);
+                }
+            });
     }
 
     private void editarProduto(View view) {
@@ -175,20 +180,7 @@ public class ProdutoFragment extends BaseFragment {
 
     private void novoProduto(View view) {
         ((ProdutoActivity) getActivity()).getSupportActionBar().setTitle(R.string.produto);
-        imageViewFoto = (ImageView) view.findViewById(R.id.image_view_fragmentproduto);
-        imageViewFoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(Intent.createChooser(intent, "Selecione uma imagem"), 0);
-            }
-        });
-
-        editTextNomeProduto = (EditText) view.findViewById(R.id.nome_produto_fragmentproduto);
-        editTextMarca = (EditText) view.findViewById(R.id.marca_produto_fragmentproduto);
-        editTextValorProduto = (EditText) view.findViewById(R.id.valor_produto_fragmentproduto);
-        editTextLocalCompra = (EditText) view.findViewById(R.id.local_compra_fragmentproduto);
-
+        mapearInputs(view);
     }
 
 

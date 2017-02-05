@@ -35,7 +35,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     private void inflarAlert(AlertDialog.Builder builder) {
-        builder.setPositiveButton(R.string.bottom_sheet_behavior, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.title_buttom_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 getActivity().finish();
             }
