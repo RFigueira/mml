@@ -22,7 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/cardview_adapter_titulo_produto"
-            android:layout_marginLeft="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
             android:gravity="center"
             android:textStyle="bold"/>
 
@@ -34,7 +35,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:id="@+id/cardview_adapter_imagem"/>
+                android:id="@+id/cardview_adapter_imagem"
+                android:layout_marginBottom="3dp"/>
             <ProgressBar
                 android:id="@+id/cardview_adapter_prograss_bar"
                 android:layout_width="wrap_content"
