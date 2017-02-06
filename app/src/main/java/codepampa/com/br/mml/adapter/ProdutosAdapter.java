@@ -47,7 +47,7 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.Produt
     public void onBindViewHolder(final ProdutosViewHolder produtosViewHolder, final int position) {
 
         Produto produto = produtos.get(position);
-        produtosViewHolder.textViewNome.setText(produto.nome);
+        produtosViewHolder.textViewNome.setText(produto.getApresentacaoFormatada());
         produtosViewHolder.progressBar.setVisibility(View.VISIBLE);
 
         if(!Util.isNullOrEmpty(produto.urlImagem)){

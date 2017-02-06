@@ -27,6 +27,10 @@ public class Produto implements Serializable {
         this.urlImagem = urlImagem;
     }
 
+    public String getApresentacaoFormatada() {
+        return "Produto: " + nome + ", Valor R$: " + preco.toPlainString();
+    }
+
     @Override
     public String toString() {
         return "Produto{" +

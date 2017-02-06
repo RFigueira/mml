@@ -6,7 +6,7 @@
     <string name="novo">Novo</string>
     <string name="produtos">Produtos</string>
     <string name="produto">Produto</string>
-    <string name="digite_aqui">Digite aqui ;)</string>
+    <string name="digite_aqui">Pesquisar produto ;)</string>
     <string name="local_compra">Local compra: </string>
     <string name="valor_rs">Valor R$: </string>
     <string name="nome_produto">Nome produto: </string>

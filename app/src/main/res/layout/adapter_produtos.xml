@@ -22,7 +22,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/cardview_adapter_titulo_produto"
-            android:layout_marginLeft="3dp"/>
+            android:layout_marginLeft="3dp"
+            android:gravity="center"
+            android:textStyle="bold"/>
 
         <FrameLayout
             android:layout_width="match_parent"
