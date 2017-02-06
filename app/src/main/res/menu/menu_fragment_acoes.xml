@@ -3,7 +3,7 @@
     <item
         android:id="@+id/menuitem_salvar"
         android:icon="@mipmap/ic_action_accept"
-        app:showAsAction="never"
+        app:showAsAction="always"
         android:title="@string/salvar" />
     <item
         android:id="@+id/menuitem_excluir"
